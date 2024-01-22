@@ -1,0 +1,41 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_tags %}
+
+{% block title %}
+Доска объявлений
+{% endblock title %}
+
+{% block content %}
+<h1>Все объявления</h1>
+<hr>
+{% if posts %}
+{% for p in posts %}
+
+<small>
+    Категория: {{p.category.name}} | Автор: {{ p.author.username }} | Дата: {{p.pub_date|date:"d-m-Y H:i:s"}}
+</small>
+
+<h2>
+    {{p.heading}}
+</h2>
+<h4>
+    {{p.content|safe}}
+</h4>
+
+<div align="center">
+    <a class="main_button" href="{{ p.get_absolute_url }}" title="Прочитать">Прочитать</a>
+</div>
+<hr>
+{% endfor %}
+
+{% else %}
+<h2>
+    Нет объявлений
+</h2>
+{% endif %}
+
+<div align="center">
+    {% include 'msg_board/pagination.html' %}
+</div>
+<br>
+{% endblock content %}

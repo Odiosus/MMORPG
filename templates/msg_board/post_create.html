@@ -1,0 +1,20 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Создать объявление
+{% endblock title %}
+
+{% block content %}
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <h1>Новое объявление</h1>
+<hr>
+    <form action="{% url 'post_create' %}" method="POST" enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+
+        <button type="submit">Разместить объявление</button>
+    </form>
+{% endblock content %}

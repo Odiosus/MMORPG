@@ -1,0 +1,52 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    Комментарии
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+<h1>Мои комментарии</h1>
+<hr>
+{% if comments %}
+{% for c in comments %}
+{% if c.confirm is False %}
+<small class="fw-bold">Дата: {{ c.date_comment | date:"d.m.Y H:i" }}</small>
+<small class="text-muted">Автор: {{ c.author }}</small>
+<p>Комментарий к {{ c.post_comment | safe }}</p>
+
+<div align="center">
+    <a class="main_button_confirm" href="{% url 'confirm_comment' pk=c.pk %}" title="Принять">Принять</a>
+</div>
+<br>
+
+<div align="center">
+    <a class="main_button_reject" href="{% url 'reject_comment' pk=c.pk %}" title="Отклонить">Отклонить</a>
+</div>
+<br>
+{% else %}
+<small class="fw-bold">Дата: {{ c.date_comment | date:"d.m.Y H:i" }}</small>
+<small class="text-muted">Автор: {{ c.author }}</small>
+<p>
+    Комментарий к {{ c.post_comment | safe }}
+</p>
+{{ c.text | safe }}
+
+<div align="center">
+    <a class="main_button" href="{{ c.get_absolute_url }}">Прочитать</a>
+</div>
+{% endif %}
+<hr>
+{% endfor %}
+{% endif %}
+<div align="center">
+    {% include 'msg_board/pagination.html' %}
+</div>
+{% endblock content %}
+</body>
+</html>

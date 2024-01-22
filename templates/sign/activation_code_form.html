@@ -1,0 +1,34 @@
+{% extends  'base.html' %}
+
+{% load static %}
+
+{% block content %}
+{% if not user.is_authenticated %}
+<div class="container">
+<h1 class="text-center">Активировать учетную запись</h1>
+    <div class="col-lg-6 col-lg-offset-3">
+        <form method="post" action="{% url 'end_registr' %}">
+            {% csrf_token %}
+            {% for field in form %}
+            <p>
+              {{ field.label_tag }}<br>
+                {% for error in field.errors %}
+                    <p class="register-error">{{ error }}</p>
+                {% endfor %}
+              {{ field }}
+              {% if field.help_text %}
+              <span class="help-text-register">{{ field.help_text }}</span>
+              {% endif %}
+
+            </p>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Активировать</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<h1 class="text-center">Вы уже зарегистрированы!</h1>
+<h5 class="text-center">Чтобы зарегистрировать новый аккаунт, выйдете из текущего.</h5>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'flatpages/default.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    {{ title }}
+    {% endblock title %}
+</head>
+<body>
+{% block content %}
+<h1>Фильтр объявлений</h1>
+<hr>
+<form action="" method="get">
+    {{ filterset.form.as_table }}
+    <input type="submit" value="Найти"/>
+</form>
+<hr>
+{% for n in filterset.qs %}
+<small class="fw-bold">Дата: {{ n.pub_date | date:"d.m.Y" }}</small>
+<p>Объявление: <a href="{{ n.get_absolute_url }}">{{ n.heading }}</a></p>
+<hr>
+{% endfor %}
+{% endblock content %}
+</body>
+</html>

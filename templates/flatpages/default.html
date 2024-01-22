@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="SMY"/>
+    <title>
+        {% block title %}
+        MMORPG
+        {% endblock title %}
+    </title>
+    <!-- Favicon-->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">MMORPG</div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'posts' %}">Все объявления</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'post_create' %}">Создать объявление</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'search' %}">Поиск объявлений</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'sign:register' %}">Регистрация</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'sign:login' %}">Вход</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'sign:logout' %}">Выход</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'profile' %}">Мои объявления и комментарии</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'sign:profile' %}">Личный кабинет</a>
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    {% block content %}
+                    {{ flatpage.content }}
+                    {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JS-->
+<!-- Core theme JS-->
+</body>
+</html>
+

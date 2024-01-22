@@ -1,0 +1,27 @@
+{% extends 'flatpages/default.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    {{ title }}
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+<h4>
+    <b>{{user.username}}</b> комментарий принят!
+</h4>
+<hr>
+<div align="center">
+    <a class="main_button" href="{% url 'comments' %}" title="Мои комментарии">Мои комментарии</a>
+</div>
+<br>
+<div align="center">
+    <a class="main_button" href="{% url 'posts' %}" title="На главную">На главную</a>
+</div>
+<hr>
+{% endblock content %}
+</body>
+</html>

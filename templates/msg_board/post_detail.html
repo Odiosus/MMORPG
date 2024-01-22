@@ -1,0 +1,45 @@
+{% extends 'flatpages/default.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    {{ title }}
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+<hr>
+<small class="fw-bold">Дата: {{ post_detail.pub_date | date:"d.m.Y" }}</small>
+<small class="text-muted">Автор: {{ post_detail.author }}</small>
+<small class="fw-bold">Категория: {{ post_detail.category }}</small>
+<h4>
+    <b>{{ post_detail.heading }}</b>
+</h4>
+<p>{{ post_detail.content | safe }}</p>
+
+{% if user.is_authenticated %}
+<style>
+    /* Стили кнопки */
+    .main_button_del{display: inline-block;cursor: pointer; font-size:15px;text-decoration:none;padding:5px 10px; color:#000000;background:#ffbdbd;border-radius:5px;border:1px solid #000000;}
+    .main_button_del:hover{background:#ff5454;color:#ffffff;border:1px solid #000000;transition: all 0.2s ease;}
+</style>
+<a class="main_button_del" href="{{ 'delete' }}" title="Удалить">Удалить</a>
+<style>
+    /* Стили кнопки */
+    .main_button_edit{display: inline-block;cursor: pointer; font-size:15px;text-decoration:none;padding:5px 10px; color:#000000;background:#b0c8ff;border-radius:5px;border:1px solid #000000;}
+    .main_button_edit:hover{background:#5487ff;color:#ffffff;border:1px solid #000000;transition: all 0.2s ease;}
+</style>
+<a class="main_button_edit" href="{{ 'edit' }}" title="Редактировать">Редактировать</a>
+<style>
+    /* Стили кнопки */
+    .main_button_comment{display: inline-block;cursor: pointer; font-size:15px;text-decoration:none;padding:5px 10px; color:#000000;background:#c2eddd;border-radius:5px;border:1px solid #000000;}
+    .main_button_comment:hover{background:#36755e;color:#ffffff;border:1px solid #000000;transition: all 0.2s ease;}
+</style>
+<a class="main_button_comment" href="{{ 'comment' }}" title="Комментировать">Комментировать</a>
+{% endif %}
+<hr>
+{% endblock content %}
+</body>
+</html>
